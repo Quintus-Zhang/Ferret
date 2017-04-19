@@ -37,12 +37,4 @@ class ExplicitEu(FiniteDifferences):
         for j in reversed(self.jValues):
             self.grid[1:-1, j] = np.dot(self.coeffs, self.grid[1:-1, j+1])
 
-            
-if __name__ == "__main__":
-    # from FDExplicitEu import FDExplicitEu
-    option = ExplicitEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 1000, False)
-    print(option.price())
-
-    option = ExplicitEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 100, False)
-    print(option.price())
     

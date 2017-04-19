@@ -8,25 +8,47 @@ Created on Tue Apr 18 15:19:37 2017
 from ExplicitEu import ExplicitEu
 from ImplicitEu import ImplicitEu
 from CNEu import CNEu
-
+from ImplicitAm import ImplicitAmBer
+from ImplicitAm import ImplicitAmBre
 
 if __name__ == "__main__":
-    option = ExplicitEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 1000, False)
+    
+    # set up parameters
+    S0 = 60
+    K = 50
+    r = 0.1
+    T = 5./12
+    sigma = 0.4
+    Smax = 100
+    M = 100
+    N = 1000
+    is_call = True
+    
+    # pricing 
+#    option = ExplicitEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
+#    print(option.price())
+#    
+#    option = ExplicitEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
+#    print(option.price())
+    
+    
+    option = ImplicitEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
     print(option.price())
 
-    option = ExplicitEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 100, False)
+    option = ImplicitEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
     print(option.price())
     
     
-    option = ImplicitEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 1000, False)
-    print(option.price())
-
-    option = ImplicitEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 100, False)
-    print(option.price())
+#    option = CNEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
+#    print(option.price())
+#
+#    option = CNEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
+#    print(option.price())
     
     
-    option = CNEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 1000, False)
+    
+    option = ImplicitAmBer(S0, K, r, T, sigma, Smax, M, 1000, is_call)
     print(option.price())
-
-    option = CNEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 100, False)
+    
+    option = ImplicitAmBre(S0, K, r, T, sigma, Smax, M, 1000, is_call)
     print(option.price())

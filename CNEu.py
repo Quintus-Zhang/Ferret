@@ -37,11 +37,4 @@ class CNEu(ExplicitEu):
         for j in reversed(self.jValues):
             Ux = linalg.solve(L, np.dot(self.coeffs, self.grid[1:-1, j+1]))
             self.grid[1:-1, j] = linalg.solve(U, Ux)
-
-if __name__ == "__main__":
-    option = CNEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 1000, False)
-    print(option.price())
-
-    option = CNEu(50, 50, 0.1, 5./12., 0.4, 100, 100, 100, False)
-    print(option.price())
     
