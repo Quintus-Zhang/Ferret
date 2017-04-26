@@ -14,7 +14,7 @@ from ImplicitAm import ImplicitAmBre
 if __name__ == "__main__":
     
     # set up parameters
-    S0 = 60
+    S0 = 50
     K = 50
     r = 0.1
     T = 5./12
@@ -25,11 +25,11 @@ if __name__ == "__main__":
     is_call = True
     
     # pricing 
-#    option = ExplicitEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
-#    print(option.price())
-#    
-#    option = ExplicitEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
-#    print(option.price())
+    option = ExplicitEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
+    print(option.price())
+    
+    option = ExplicitEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
+    print(option.price())
     
     
     option = ImplicitEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
@@ -39,11 +39,11 @@ if __name__ == "__main__":
     print(option.price())
     
     
-#    option = CNEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
-#    print(option.price())
-#
-#    option = CNEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
-#    print(option.price())
+    option = CNEu(S0, K, r, T, sigma, Smax, M, 1000, is_call)
+    print(option.price())
+
+    option = CNEu(S0, K, r, T, sigma, Smax, M, 100, is_call)
+    print(option.price())
     
     
     

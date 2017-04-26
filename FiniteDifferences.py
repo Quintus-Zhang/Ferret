@@ -2,26 +2,22 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
+from OptionsPricing import OptionsPricing
 
-class FiniteDifferences(object):
+class FiniteDifferences(OptionsPricing):
     """ Shared attributes and functions of FD """
 
     def __init__(self, S0, K, r, T, sigma, Smax, M, N, is_call=True):
-        self.S0 = S0
-        self.K = K
-        self.r = r
-        self.T = T
-        self.sigma = sigma
+        super(FiniteDifferences, self).__init__(S0, K, r, T, sigma, is_call=True)
         self.Smax = Smax
         self.M, self.N = int(M), int(N)  # Ensure M&N are integers
-        self.is_call = is_call
 
         self.dS = Smax / float(self.M)
         self.dt = T / float(self.N)
         self.iValues = np.arange(1, self.M)
         self.jValues = np.arange(self.N)
         self.grid = np.zeros(shape=(self.M+1, self.N+1)) # grid is M+1 by N+1
-        self.SValues = np.linspace(0, Smax, self.M+1) 
+        self.SValues = np.linspace(0, Smax, self.M+1)
 
     def _setup_boundary_conditions_(self):
         pass

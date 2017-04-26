@@ -11,7 +11,8 @@ import scipy.linalg as linalg
 from ImplicitEu import ImplicitEu
 
 class ImplicitAmBer(ImplicitEu):
-    
+    ''' Compute price of American option using Bermudan approximation method
+    '''
     def _setup_boundary_conditions_(self):
         super(ImplicitEu, self)._setup_boundary_conditions_()
         self.IV = self.grid[np.arange(1,self.M), -1] # advanced indexing - a copy not a view
@@ -26,7 +27,8 @@ class ImplicitAmBer(ImplicitEu):
             self.grid[1:-1, j][exerRegion] = self.IV[exerRegion]
 
 class ImplicitAmBre(ImplicitAmBer):
-        
+    ''' Compute price of American option using Brennan-Shcwartz algorithm
+    ''' 
     def _traverse_grid_(self):
         if self.is_call:
             # convert coeffs to upper triangle matrix
