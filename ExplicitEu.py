@@ -36,5 +36,7 @@ class ExplicitEu(FiniteDifferences):
     def _traverse_grid_(self):
         for j in reversed(self.jValues):
             self.grid[1:-1, j] = np.dot(self.coeffs, self.grid[1:-1, j+1])
+            self.grid[0, j] = 2 * self.grid[1, j] - self.grid[2, j]
+            self.grid[-1, j] = 2 * self.grid[-2, j] - self.grid[-3, j]
 
     
