@@ -8,7 +8,7 @@ class FiniteDifferences(OptionsPricing):
     """ Shared attributes and functions of FD """
 
     def __init__(self, S0, K, r, T, sigma, Smax, M, N, is_call=True):
-        super(FiniteDifferences, self).__init__(S0, K, r, T, sigma, is_call=True)
+        super(FiniteDifferences, self).__init__(S0, K, r, T, sigma, is_call)
         self.Smax = Smax
         self.M, self.N = int(M), int(N)  # Ensure M&N are integers
 

@@ -25,6 +25,8 @@ class ImplicitAmBer(ImplicitEu):
             # 
             exerRegion = self.grid[1:-1, j] < self.IV
             self.grid[1:-1, j][exerRegion] = self.IV[exerRegion]
+            self.grid[0, j] = 2 * self.grid[1, j] - self.grid[2, j]
+            self.grid[-1, j] = 2 * self.grid[-2, j] - self.grid[-3, j]
 
 class ImplicitAmBre(ImplicitAmBer):
     ''' Compute price of American option using Brennan-Shcwartz algorithm
@@ -46,6 +48,8 @@ class ImplicitAmBre(ImplicitAmBer):
                         self.grid[i, j] = (self.grid[i, j+1] - self.grid[i+1, j]*self.coeffs[i-1, i]) / self.coeffs[i-1, i-1]
                     if self.grid[i, j] < self.IV[i-1]:
                         self.grid[i, j] = self.IV[i-1]
+                self.grid[0, j] = 2 * self.grid[1, j] - self.grid[2, j]
+                self.grid[-1, j] = 2 * self.grid[-2, j] - self.grid[-3, j]
         else:
             # convert coeffs to lower triangle matrix
             multiplier = np.zeros(self.M-2)
@@ -65,6 +69,8 @@ class ImplicitAmBre(ImplicitAmBer):
                         self.grid[i, j] = (self.grid[i, j+1] - self.grid[i-1, j]*self.coeffs[i-1, i-2]) / self.coeffs[i-1, i-1]
                     if self.grid[i, j] < self.IV[i-1]:
                         self.grid[i, j] = self.IV[i-1]
+                self.grid[0, j] = 2 * self.grid[1, j] - self.grid[2, j]
+                self.grid[-1, j] = 2 * self.grid[-2, j] - self.grid[-3, j]
             
 
         

@@ -37,4 +37,6 @@ class CNEu(ExplicitEu):
         for j in reversed(self.jValues):
             Ux = linalg.solve(L, np.dot(self.coeffs, self.grid[1:-1, j+1]))
             self.grid[1:-1, j] = linalg.solve(U, Ux)
+            self.grid[0, j] = 2 * self.grid[1, j] - self.grid[2, j]
+            self.grid[-1, j] = 2 * self.grid[-2, j] - self.grid[-3, j]
     

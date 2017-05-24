@@ -14,5 +14,8 @@ class BSClosedForm(OptionsPricing):
     def price(self):
         d1 = ((self.r + 0.5 * self.sigma**2) * self.T - np.log(self.K / self.S0)) / (self.sigma * np.sqrt(self.T))
         d2 = ((self.r - 0.5 * self.sigma**2) * self.T - np.log(self.K / self.S0)) / (self.sigma * np.sqrt(self.T))
-        p = np.exp(-self.r * self.T) * self.K * norm.cdf(-d2) - self.S0 * np.exp(self.T) * norm.cdf(-d1)
+        if self.is_call:
+            p = self.S0 * norm.cdf(d1) - np.exp(-self.r * self.T) * self.K * norm.cdf(d2) 
+        else:               
+            p = np.exp(-self.r * self.T) * self.K * norm.cdf(-d2) - self.S0 * norm.cdf(-d1)
         return p
